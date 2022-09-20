@@ -1,5 +1,6 @@
 const user = require('../models/user')
 const bcrypt = require('bcrypt')
+const jsontoken = require('jsonwebtoken')
 
 const login = async(req, res)=>{
     user.findOne({
@@ -12,7 +13,13 @@ const login = async(req, res)=>{
             await new Promise((resolve, rej)=>{
                 bcrypt.compare(req.body.password, result.password,(err, same)=>{
                     if(same){
-                        res.json({status: "sucessfully login"})
+                        token = jsontoken.sign({userID:result._id},
+                            process.env.SECRET,{expiresIn:"10d"})
+
+                        res.json({
+                            status: "sucessfully login",
+                            "x-access-token": token
+                        })
                     }
                     else{
                         res.json({status: "wrong password"})
