@@ -6,7 +6,7 @@ require('./config/db')
 
 //Router imports
 const {
-    login, group, signup
+    login, group, signup, profile
 } = require('./routes')
 
 const app = express()
@@ -19,6 +19,7 @@ app.use(cookieParser())
 app.use('/signup', signup)
 app.use('/login', login)
 app.use('/group', group)
+app.use('/profile', profile)
 
 app.get('/', (req,res)=>{
     res.send("Hello")
