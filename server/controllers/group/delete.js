@@ -36,3 +36,7 @@ const del = async(req, res)=>{
 }
 
 module.exports = del
+
+// Description: Delete a group
+// Input: groupID = _id
+// Output: message

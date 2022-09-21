@@ -30,3 +30,7 @@ const fetch = async(req, res)=>{
 }
 
 module.exports = fetch
+
+// Description: Fetch all the group which are being joined by the user
+// Input: No input
+// Output: Json
