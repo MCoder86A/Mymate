@@ -13,7 +13,11 @@ const login = async(req, res)=>{
             await new Promise((resolve, rej)=>{
                 bcrypt.compare(req.body.password, result.password,(err, same)=>{
                     if(same){
-                        token = jsontoken.sign({userID:result._id},
+                        token = jsontoken.sign({
+                                userID:result._id,
+                                name: result.name,
+                                username: result.username
+                            },
                             process.env.SECRET,{expiresIn:"10d"})
 
                         res.json({
