@@ -4,7 +4,8 @@ const groupSchema = new mongoose.Schema({
     name: String,
     description: String,
     admin: mongoose.Types.ObjectId,
-    member: [mongoose.Types.ObjectId]
+    member: [mongoose.Types.ObjectId],
+    memberAddReq: [mongoose.Types.ObjectId]
 }, {timestamps: true})
 
 const group = mongoose.model("group", groupSchema)

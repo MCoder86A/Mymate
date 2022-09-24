@@ -1,5 +1,7 @@
 module.exports = {
     create: require('./create'),
     _delete: require('./delete'),
-    fetch: require('./fetch')
+    fetch: require('./fetch'),
+    addme: require('./addme'),
+    showreq: require('./showreq')
 }
