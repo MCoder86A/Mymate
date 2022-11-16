@@ -4,17 +4,18 @@ const user = require('../../models/user')
 
 const showreq = async(req,res)=>{
     const output = {
-        userID: []
+        request:[]
     }
     
-    const myDoc = await user.findById(req.user.userID)
-    group.find({admin: myDoc._id},(err, result)=>{
+    group.find({admin: req.user.userID},(err, result)=>{
         if(err){
             return res.send("internal error")
         }
-        result.map((val,inx)=>{
-            output.groupID = val._id
-            output.userID.push(...val.memberAddReq)
+        result.map((val)=>{
+            output.request.push({
+                groupID:val._id,
+                member_list:val.memberAddReq
+            })
         })
 
         return res.json(output)
