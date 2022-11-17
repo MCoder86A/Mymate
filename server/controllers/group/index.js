@@ -3,5 +3,6 @@ module.exports = {
     _delete: require('./delete'),
     fetch: require('./fetch'),
     addme: require('./addme'),
-    showreq: require('./showreq')
+    showreq: require('./showreq'),
+    acceptreq: require('./acceptreq')
 }

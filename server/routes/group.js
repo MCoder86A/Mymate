@@ -2,7 +2,7 @@ const {Router} = require('express')
 
 const {
     create, _delete, fetch, addme,
-    showreq
+    showreq, acceptreq
 } = require('../controllers/')
 
 //Authenticate user
@@ -16,5 +16,6 @@ group.post('/delete', checkAuth, _delete)
 group.post('/fetch', checkAuth, fetch)
 group.post('/addme', checkAuth, addme)
 group.post('/showreq', checkAuth, showreq)
+group.post('/acceptreq', checkAuth, acceptreq)
 
 module.exports = group
