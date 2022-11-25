@@ -1,5 +1,6 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const config = require('dotenv').config()
 
 require('./config/db')
@@ -14,6 +15,7 @@ const app = express()
 app.use(express.urlencoded())
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 
 //ROUTER
 app.use('/signup', signup)
