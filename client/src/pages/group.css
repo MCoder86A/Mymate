@@ -1,0 +1,25 @@
+.groupBody a{
+    color: rgb(29, 27, 27);
+}
+.groupBody{
+    display: flex;
+    flex-direction: row;
+}
+
+.groupBody .left{
+    flex: 1 0 10%;
+}
+.groupBody .mid{
+    flex: 1 0 50%;
+}
+.groupBody .right{
+    flex: 1 0 20%;
+}
+
+.groupBody .left .GroupMenu .item{
+    cursor: default;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    border-bottom: 1px solid rgb(155, 162, 163);
+}

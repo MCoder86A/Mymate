@@ -1,0 +1,21 @@
+.groupCard div{
+    height:0 rem;
+}
+.groupCard .button{
+    display: flex;
+
+}
+.groupCard .button div{
+    margin-right: .2rem;
+    margin-top: .8rem;
+    width: fit-content;
+    padding: .2rem;
+    cursor:default;
+    border-radius: .2rem;
+    border: 1px solid rgb(114, 197, 230);
+}
+.groupCard{
+    padding: 2rem;
+    border: 1px solid rgb(245, 232, 232);
+    border-radius: .4rem;
+}
