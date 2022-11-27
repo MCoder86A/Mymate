@@ -4,5 +4,6 @@ module.exports = {
     fetch: require('./fetch'),
     addme: require('./addme'),
     showreq: require('./showreq'),
-    acceptreq: require('./acceptreq')
+    acceptreq: require('./acceptreq'),
+    getgroup: require('./getgroup')
 }
