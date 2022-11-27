@@ -17,6 +17,9 @@ const fetch = async(req, res)=>{
             groupInfo.admin = groupDoc.admin
             groupInfo.createdAt = groupDoc.createdAt
             groupInfo.memberCount = groupDoc.member.length
+            groupInfo.amIPresent = groupDoc.member.findIndex(
+                (val) => val==req.user.userID
+            )==-1?"no":"yes"
 
             groups.push(groupInfo)
 
