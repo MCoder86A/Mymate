@@ -12,6 +12,12 @@ const getgroup = async(req,res)=>{
         Group.name = grp.name
         Group.admin = grp.admin
         Group.memberCount = grp.member.length
+        Group.amIPresent = grp.member.findIndex(
+            (val) => val==req.user.userID
+        )==-1?"no":"yes"
+        Group.reqSent = grp.memberAddReq.findIndex(
+            (val) => val==req.user.userID
+        )==-1?"no":"yes"
         outGroup.push(Group)
     })
 
