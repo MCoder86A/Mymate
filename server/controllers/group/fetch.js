@@ -14,6 +14,7 @@ const fetch = async(req, res)=>{
             let groupInfo = {}
             groupInfo._id = groupDoc._id
             groupInfo.name = groupDoc.name
+            groupInfo.description = groupDoc.description
             groupInfo.admin = groupDoc.admin
             groupInfo.createdAt = groupDoc.createdAt
             groupInfo.memberCount = groupDoc.member.length

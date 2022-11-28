@@ -10,6 +10,7 @@ const getgroup = async(req,res)=>{
         const Group = {}
         Group._id = grp._id
         Group.name = grp.name
+        Group.description = grp.description
         Group.admin = grp.admin
         Group.memberCount = grp.member.length
         Group.amIPresent = grp.member.findIndex(
