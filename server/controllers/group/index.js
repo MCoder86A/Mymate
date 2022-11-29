@@ -5,5 +5,6 @@ module.exports = {
     addme: require('./addme'),
     showreq: require('./showreq'),
     acceptreq: require('./acceptreq'),
-    getgroup: require('./getgroup')
+    getgroup: require('./getgroup'),
+    groupinfo: require('./groupinfo')
 }

@@ -1,3 +1,4 @@
 module.exports = {
-    myprofile: require('./myprofile')
+    myprofile: require('./myprofile'),
+    userinfo: require('./userinfo')
 }
