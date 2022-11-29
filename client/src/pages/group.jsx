@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 
 import GroupCard from '../component/group/groupCard/groupCard'
 import GroupCreate from '../component/group/groupCreate/groupCreate'
+import Notification from '../component/group/notification/notification'
 import Navbar from '../component/navbar/navbar'
 import './group.css'
 
@@ -86,6 +87,9 @@ const Group=()=>{
                         <Link to={'/group/mygroup'}>
                             <div className='item' id="myGroup">My group</div>
                         </Link>
+                        <Link to={'/group/notification'}>
+                            <div className='item' id="myGroup">Notification</div>
+                        </Link>
                     </div>
                 </div>
                 <div className="mid">
@@ -103,6 +107,9 @@ const Group=()=>{
                                 key={group['_id']}/>)
                         }/>
                         
+                        <Route path='notification/*' element={
+                                <Notification />
+                            } />
                     </Routes>
                 </div>
                 <div className="right"></div>

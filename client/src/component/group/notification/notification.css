@@ -1,0 +1,55 @@
+.groupBody .notification .nav .box1{
+    display:inline-block;
+    padding: .3rem;
+}
+
+.groupBody .notification .nav .box1 .item{
+    border: 1px solid rgb(18, 75, 18);
+    border-radius: .5rem;
+    padding: .1rem;
+    padding-left: .4rem;
+    padding-right: .4rem;
+}
+.groupBody .notification .nav .box1 .item:hover{
+    border: 1px solid rgb(18, 75, 18);
+    background-color: rgb(24, 132, 165);
+    color: rgb(255, 255, 255);
+}
+
+.groupBody .notification{
+    padding-top: .5rem;
+    padding-left: 2rem;
+}
+
+.groupBody .notification .group_request{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.groupBody .notification .group_request .join_card{
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+}
+.groupBody .notification .group_request .join_card .action{
+    padding-top: 1rem;
+    display: flex;
+}
+
+.groupBody .notification .group_request .join_card .action .item{
+    padding-right: .5rem;
+}
+.groupBody .notification .group_request .join_card .action .item div{
+    padding: .05rem;
+    padding-left: .3rem;
+    padding-right: .3rem;
+    border: 1px solid rgb(17, 119, 160);
+    border-radius: .4rem;
+}
+.groupBody .notification .group_request .join_card .action #accepted div{
+    border: 0px;
+    color: rgb(1, 88, 1);
+}
+.groupBody .notification .group_request .join_card .action #deleted div{
+    border: 0px;
+    color: rgb(156, 23, 23);
+}
