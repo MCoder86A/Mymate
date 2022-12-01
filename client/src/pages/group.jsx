@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 
 import GroupCard from '../component/group/groupCard/groupCard'
 import GroupCreate from '../component/group/groupCreate/groupCreate'
+import GroupInfoPage from '../component/group/groupInfoPage/groupInfoPage'
 import Notification from '../component/group/notification/notification'
 import Navbar from '../component/navbar/navbar'
 import './group.css'
@@ -87,7 +88,7 @@ const Group=()=>{
                         <Link to={'/group/mygroup'}>
                             <div className='item' id="myGroup">My group</div>
                         </Link>
-                        <Link to={'/group/notification'}>
+                        <Link to={'/group/notification/request'}>
                             <div className='item' id="myGroup">Notification</div>
                         </Link>
                     </div>
@@ -110,6 +111,10 @@ const Group=()=>{
                         <Route path='notification/*' element={
                                 <Notification />
                             } />
+
+                        <Route path='g_id/:g_id' element={
+                            <GroupInfoPage />
+                        } />
                     </Routes>
                 </div>
                 <div className="right"></div>

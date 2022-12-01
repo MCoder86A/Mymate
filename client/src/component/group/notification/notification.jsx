@@ -58,11 +58,12 @@ const Notification = ()=>{
                 <div className="group_request">
                     <Routes>
                         <Route path="request" element={
-                            reqestInfo.map((request)=>{
+                            reqestInfo.length!==0? reqestInfo.map((request)=>{
                                 return <JoinCard
                                     key={request['memberID']}
                                     joinCardProps={request}/>
-                            })
+                            }):
+                            <div>{'No new request'}</div>
                         } />
                     </Routes>
                 </div>

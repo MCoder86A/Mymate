@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import {Link} from 'react-router-dom'
 import './groupCard.css'
 
 const GroupCard=(groupProps)=>{
@@ -87,7 +88,9 @@ const GroupCard=(groupProps)=>{
                             onClick={addme}>Add</div>)
                         )
                     }
-                    <div id="visit">More</div>
+                    <Link to={`/group/g_id/${_id}`}>
+                        <div id="visit">More</div>
+                    </Link>
                 </div>
             </div>
         </>

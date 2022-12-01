@@ -1,0 +1,19 @@
+.groupinfopage {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.groupinfopage .name{
+    font-weight: 600;
+}
+
+.groupinfopage .members{
+    margin-top: 4rem;
+}
+
+.groupinfopage .members .header{
+    font-weight: 600;
+}
+.groupinfopage .members .items div{
+    padding-top: 1rem;
+}
