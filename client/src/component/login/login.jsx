@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {API_BASE_URL} from '../../config/env'
 import './login.css'
 
 
@@ -21,7 +22,7 @@ const Login = ()=>{
             body: urlencoded
         };
 
-        const result = await fetch("http://localhost:3001/login", requestOptions)
+        const result = await fetch(`${API_BASE_URL}/login`, requestOptions)
         const data = await result.text()
         
         const jsonData = JSON.parse(data)

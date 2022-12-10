@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {Link} from 'react-router-dom'
+import { API_BASE_URL } from '../../../config/env'
 import './groupCard.css'
 
 const GroupCard=(groupProps)=>{
@@ -26,7 +27,7 @@ const GroupCard=(groupProps)=>{
            bodyContent.append('groupID', _id)
            
            let response = await fetch(
-            "http://127.0.0.1:3001/group/addme", { 
+            `${API_BASE_URL}/group/addme`, { 
                 method: "POST",
                 body: bodyContent,
                 headers: headersList
@@ -50,7 +51,7 @@ const GroupCard=(groupProps)=>{
         };
         
         const data = await fetch(
-            "http://127.0.0.1:3001/profile/myprofile",
+            `${API_BASE_URL}/profile/myprofile`,
             requestOptions)
         const result = await data.json()
         setMyProfile(result)

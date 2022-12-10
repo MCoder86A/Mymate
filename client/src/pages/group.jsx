@@ -9,6 +9,7 @@ import GroupCreate from '../component/group/groupCreate/groupCreate'
 import GroupInfoPage from '../component/group/groupInfoPage/groupInfoPage'
 import Notification from '../component/group/notification/notification'
 import Navbar from '../component/navbar/navbar'
+import { API_BASE_URL } from '../config/env'
 import './group.css'
 
 const Group=()=>{
@@ -29,7 +30,7 @@ const Group=()=>{
         };
 
         const data = await fetch(
-            "http://127.0.0.1:3001/group/fetch",
+            `${API_BASE_URL}/group/fetch`,
             requestOptions)
         const result = await data.json()
         console.log("Fetched_api_group_fetch")
@@ -48,7 +49,7 @@ const Group=()=>{
         };
 
         const data = await fetch(
-            "http://127.0.0.1:3001/group/getgroup",
+            `${API_BASE_URL}/group/getgroup`,
             requestOptions)
         const result = await data.json()
         console.log("api_getgroup")

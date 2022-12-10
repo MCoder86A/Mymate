@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Outlet, Route, Routes } from "react-router"
 import {Link} from 'react-router-dom'
 import JoinCard from "./joinCard"
+import { API_BASE_URL } from '../../../config/env'
 
 import './notification.css'
 
@@ -15,7 +16,7 @@ const Notification = ()=>{
         }
         
         let response = await fetch(
-            "http://127.0.0.1:3001/group/showreq", { 
+            `${API_BASE_URL}/group/showreq`, { 
             method: "POST",
             headers: headersList
         });

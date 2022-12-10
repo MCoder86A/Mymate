@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { API_BASE_URL } from '../../../config/env'
 import './groupCreate.css'
 
 const GroupCreate=()=>{
@@ -19,7 +20,7 @@ const GroupCreate=()=>{
            bodyContent.append('desc', desc)
            
            let response = await fetch(
-               "http://127.0.0.1:3001/group/create", { 
+               `${API_BASE_URL}/group/create`, { 
                method: "POST",
                body: bodyContent,
                headers: headersList

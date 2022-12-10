@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { API_BASE_URL } from '../../../config/env'
 
 import './groupinfopage.css'
 
@@ -20,7 +21,7 @@ const GroupInfoPage = ()=>{
            });
            
            let response = await fetch(
-               "http://127.0.0.1:3001/group/groupinfo", { 
+               `${API_BASE_URL}/group/groupinfo`, { 
                method: "POST",
                body: bodyContent,
                headers: headersList
@@ -42,7 +43,7 @@ const GroupInfoPage = ()=>{
            });
            
            let response = await fetch(
-               "http://127.0.0.1:3001/profile/userinfo", { 
+               `${API_BASE_URL}/profile/userinfo`, { 
                method: "POST",
                body: bodyContent,
                headers: headersList
