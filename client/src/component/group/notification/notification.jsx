@@ -3,24 +3,15 @@ import { useState } from "react"
 import { Outlet, Route, Routes } from "react-router"
 import {Link} from 'react-router-dom'
 import JoinCard from "./joinCard"
-import { API_BASE_URL } from '../../../config/env'
 
 import './notification.css'
+import { apiGroupRouter } from "../../../util/api/router"
 
 const Notification = ()=>{
     const [reqestInfo, setReqInfo] = useState([])
 
     const api_fetch_add_request = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token')
-        }
-        
-        let response = await fetch(
-            `${API_BASE_URL}/group/showreq`, { 
-            method: "POST",
-            headers: headersList
-        });
-        
+        const response = await apiGroupRouter().showreq()
         let data = await response.json();
         console.log(data);
         let result = []

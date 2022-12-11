@@ -9,7 +9,7 @@ import GroupCreate from '../component/group/groupCreate/groupCreate'
 import GroupInfoPage from '../component/group/groupInfoPage/groupInfoPage'
 import Notification from '../component/group/notification/notification'
 import Navbar from '../component/navbar/navbar'
-import { API_BASE_URL } from '../config/env'
+import {apiGroupRouter} from '../util/api/router'
 import './group.css'
 
 const Group=()=>{
@@ -20,18 +20,7 @@ const Group=()=>{
     const [myExplore, setMyExplore] = useState([])
 
     const api_group_fetch = async()=>{
-        var myHeaders = new Headers();
-        myHeaders.append("x-access-token",
-            localStorage.getItem('x-access-token'));
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-        };
-
-        const data = await fetch(
-            `${API_BASE_URL}/group/fetch`,
-            requestOptions)
+        const data = await apiGroupRouter().fetch()
         const result = await data.json()
         console.log("Fetched_api_group_fetch")
         
@@ -39,20 +28,9 @@ const Group=()=>{
         
     }
     const api_getGroup = async()=>{
-        var myHeaders = new Headers();
-        myHeaders.append("x-access-token",
-            localStorage.getItem('x-access-token'));
 
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        };
-
-        const data = await fetch(
-            `${API_BASE_URL}/group/getgroup`,
-            requestOptions)
+        const data = await apiGroupRouter("getGroup").getGroup()
         const result = await data.json()
-        console.log("api_getgroup")
         setMyExplore(result)
     }
 

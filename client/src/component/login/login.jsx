@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {API_BASE_URL} from '../../config/env'
+import { apiAuthRouter } from '../../util/api/router';
 import './login.css'
 
 
@@ -9,26 +9,12 @@ const Login = ()=>{
     const [password, setPassword] = useState('')
 
     const login = async()=>{
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("username", username);
-        urlencoded.append("password", password);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded
-        };
-
-        const result = await fetch(`${API_BASE_URL}/login`, requestOptions)
-        const data = await result.text()
+        const result = await apiAuthRouter().login(username,password)
         
-        const jsonData = JSON.parse(data)
+        const jsonData = await result.json()
         const x_access_token = jsonData["x-access-token"]
         if(!x_access_token){
-            console.log(data)
+            console.log(jsonData)
         }
         localStorage.setItem('x-access-token', x_access_token)
 

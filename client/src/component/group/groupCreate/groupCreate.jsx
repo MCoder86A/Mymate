@@ -1,33 +1,19 @@
 import { useState } from 'react'
-import { API_BASE_URL } from '../../../config/env'
+import { apiGroupRouter } from '../../../util/api/router'
 import './groupCreate.css'
 
 const GroupCreate=()=>{
     const [message, setMessage] = useState('')
 
     const api_GroupCreate = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/x-www-form-urlencoded"
-           }
+        const form = document.getElementById('groupCreate')
+        const name = form[0].value
+        const desc = form[1].value
+        
+        const response = await apiGroupRouter().create(name, desc)
            
-           const form = document.getElementById('groupCreate')
-           const name = form[0].value
-           const desc = form[1].value
-
-           const bodyContent = new URLSearchParams()
-           bodyContent.append('name', name)
-           bodyContent.append('desc', desc)
-           
-           let response = await fetch(
-               `${API_BASE_URL}/group/create`, { 
-               method: "POST",
-               body: bodyContent,
-               headers: headersList
-           });
-           
-           let data = await response.text();
-           setMessage(data)
+        let data = await response.text();
+        setMessage(data)
            
     }
 
