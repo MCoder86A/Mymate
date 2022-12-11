@@ -16,7 +16,7 @@ export class fetcher {
 
         let myHeaders = new Headers();
         
-        if(requireAuth){
+        if(requireAuth===true){
             myHeaders.append(
                 "x-access-token",
                 localStorage.getItem('x-access-token'));
@@ -63,7 +63,7 @@ export class fetcher {
                 'Content-Type',
                 'application/x-www-form-urlencoded'
             )
-        if(requireAuth){
+        if(requireAuth===true){
             myHeaders.append(
                 "x-access-token",
                 localStorage.getItem('x-access-token'));

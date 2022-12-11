@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { API_BASE_URL } from '../../../config/env'
+import { apiGroupRouter, apiProfileRouter } from "../../../util/api/router"
 
 import './groupinfopage.css'
 
@@ -10,47 +10,19 @@ const GroupInfoPage = ()=>{
     const [userData, setUserData] = useState([])
 
     const api_group_details = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/json"
-           }
-           
-           let bodyContent = JSON.stringify({
-             "groupID": urlParam['g_id'],
-             "option": "large"
-           });
-           
-           let response = await fetch(
-               `${API_BASE_URL}/group/groupinfo`, { 
-               method: "POST",
-               body: bodyContent,
-               headers: headersList
-           });
-           
-           let data = await response.json();
+        const response = await apiGroupRouter()
+        .groupInfo(urlParam['g_id'],'large')
+
+        let data = await response.json();
+
            setGroupData(data)
            
     }
     const api_userinfo_fetch = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/json"
-           }
+        const response = await apiProfileRouter().userinfo([...groupData.member],'large')
            
-           let bodyContent = JSON.stringify({
-             "option": "large",
-             "userID": [...groupData.member]
-           });
-           
-           let response = await fetch(
-               `${API_BASE_URL}/profile/userinfo`, { 
-               method: "POST",
-               body: bodyContent,
-               headers: headersList
-           });
-           
-           let data = await response.json();
-           setUserData(data)
+        let data = await response.json();
+        setUserData(data)
            
     }
 

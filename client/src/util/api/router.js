@@ -1,17 +1,27 @@
 import {groupRouter} from './schema/groupRouter'
+import { profileRouter } from './schema/profileRouter'
+import { userAuthRouter } from './schema/userAuthRouter'
 
 const _groupRouter = new groupRouter({
     route:'group'
 })
+const _profileRouter = new profileRouter({
+    route: 'profile'
+})
+const _authRouter = new userAuthRouter({
+    route: 'login'
+})
 
-/**
- * 
- * @param {"getGroup"|
- *         "groupInfo"} mode 
- * 
- */
-const apiGroupRouter = (mode)=>{
-    return _groupRouter.getSchema(mode)
+const apiGroupRouter = ()=>{
+    return _groupRouter.mode
 }
 
-export {apiGroupRouter}
+const apiProfileRouter = ()=>{
+    return _profileRouter.mode
+}
+
+const apiAuthRouter = ()=>{
+    return _authRouter.mode
+}
+
+export {apiGroupRouter, apiProfileRouter, apiAuthRouter}

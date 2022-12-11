@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {Link} from 'react-router-dom'
-import { API_BASE_URL } from '../../../config/env'
+import { apiGroupRouter, apiProfileRouter } from '../../../util/api/router';
 import './groupCard.css'
 
 const GroupCard=(groupProps)=>{
@@ -18,41 +18,17 @@ const GroupCard=(groupProps)=>{
     const [groupReqSent, setGroupReqSent] = useState(false)
 
     const addme = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/x-www-form-urlencoded"
-           }
+        const response = await apiGroupRouter().addme(_id)
            
-           let bodyContent = new URLSearchParams()
-           bodyContent.append('groupID', _id)
-           
-           let response = await fetch(
-            `${API_BASE_URL}/group/addme`, { 
-                method: "POST",
-                body: bodyContent,
-                headers: headersList
-           });
-           
-           let data = await response.text();
-           console.log(data)
-           if(data==="request sent"){
-               setGroupReqSent(true)
-           }
+        let data = await response.text();
+        console.log(data)
+        if(data==="request sent"){
+            setGroupReqSent(true)
+        }
            
     }
     const getMyProfile = async()=>{
-        var myHeaders = new Headers();
-        myHeaders.append("x-access-token",
-            localStorage.getItem('x-access-token'));
-        
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-        };
-        
-        const data = await fetch(
-            `${API_BASE_URL}/profile/myprofile`,
-            requestOptions)
+        const data = await apiProfileRouter().myprofile()
         const result = await data.json()
         setMyProfile(result)
     }

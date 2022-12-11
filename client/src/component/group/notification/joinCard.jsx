@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { API_BASE_URL } from '../../../config/env'
+import { apiGroupRouter, apiProfileRouter } from "../../../util/api/router"
 
 
 const JoinCard = (joinCardProps)=>{
@@ -13,21 +13,7 @@ const JoinCard = (joinCardProps)=>{
     const memberID = props['memberID']
 
     const api_accept = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-
-        let bodyContent = new URLSearchParams()
-        bodyContent.append('groupID', groupID)
-        bodyContent.append('userID', memberID)
-
-        let response = await fetch(
-            `${API_BASE_URL}/group/acceptreq`, { 
-            method: "POST",
-            body: bodyContent,
-            headers: headersList
-        });
+        const response = await apiGroupRouter().acceptreq(groupID,memberID)
 
         let data = await response.text();
         console.log(data);
@@ -38,41 +24,14 @@ const JoinCard = (joinCardProps)=>{
 
     }
     const api_user_info = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/x-www-form-urlencoded"
-           }
+        const response = await apiProfileRouter().userinfo(memberID,'small')
            
-           let bodyContent = new URLSearchParams()
-           bodyContent.append('userID', memberID)
-           
-           let response = await fetch(
-                `${API_BASE_URL}/profile/userinfo`, { 
-                method: "POST",
-                body: bodyContent,
-                headers: headersList
-           });
-           
-           let data = await response.json();
-           setUser_info(data)
+        let data = await response.json();
+        setUser_info(data)
            
     }
     const api_group_info = async()=>{
-        let headersList = {
-            "x-access-token": localStorage.getItem('x-access-token'),
-            "Content-Type": "application/x-www-form-urlencoded"
-           }
-           
-           let bodyContent = new URLSearchParams()
-           bodyContent.append('groupID', groupID)
-           
-           let response = await fetch(
-                `${API_BASE_URL}/group/groupinfo`, { 
-                method: "POST",
-                body: bodyContent,
-                headers: headersList
-           });
-           
+        const response = await apiGroupRouter().groupInfo(groupID,"small")
            let data = await response.json();
            setGroup_info(data)
     }
