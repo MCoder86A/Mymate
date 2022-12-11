@@ -1,6 +1,8 @@
 import {groupRouter} from './schema/groupRouter'
 
-const _groupRouter = new groupRouter()
+const _groupRouter = new groupRouter({
+    route:'group'
+})
 
 /**
  * 

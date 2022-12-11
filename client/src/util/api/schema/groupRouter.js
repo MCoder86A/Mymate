@@ -1,9 +1,16 @@
 import {fetcher} from '../fetcher'
 
-export class groupRouter {
-    constructor(){
+export class groupRouter extends fetcher{
+    /**
+     * 
+     * @param {{route: string}} options 
+     */
+    constructor(options){
+        super()
+        
+        this.route = options.route
+
         this.mode = {
-            
             /**
              * 
              * @param {string} groupID 
@@ -16,9 +23,13 @@ export class groupRouter {
                     option: option
                 })
         
-                return new fetcher().postData('group',
+                return this.postData('group',
                     true, data, "json", 'getgroup')
         
+            },
+
+            getGroup: async()=>{
+                return this.post(this.route,true,'getgroup')
             }
         }
     }
