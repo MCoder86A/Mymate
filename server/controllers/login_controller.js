@@ -1,40 +1,57 @@
-const user = require('../models/user')
+const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jsontoken = require('jsonwebtoken')
 
 const login = async(req, res)=>{
-    user.findOne({
-        username: req.body.username
-    },async(err, result)=>{
-        if(err){
-            res.json({status: "error"})
-        }
-        if(result){
-            await new Promise((resolve, rej)=>{
-                bcrypt.compare(req.body.password, result.password,(err, same)=>{
-                    if(same){
-                        token = jsontoken.sign({
-                                userID:result._id,
-                                name: result.name,
-                                username: result.username
-                            },
-                            process.env.SECRET,{expiresIn:"10d"})
+    let user;
+    try {
+        user = await User.findOne({
+            username: req.body.username
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
 
-                        res.json({
-                            status: "sucessfully login",
-                            "x-access-token": token
-                        })
-                    }
-                    else{
-                        res.json({status: "wrong password"})
-                    }
-                })
-            })
-        }
-        else{
-            res.json({status: "username not found"})
+    if(!user){
+        return res.json({
+            status: '400',
+            message: 'username not found'
+        })
+    }
+
+    const isMatch = await new Promise((resolve,reject)=>{
+        try {
+            const _match = bcrypt.compareSync(
+                req.body.password,
+                user.password)
+            resolve(_match)
+        } catch (error) {
+            console.log(error)
+            return;
         }
     })
+
+    if(isMatch){
+        token = jsontoken.sign({
+            userID:user._id,
+            name: user.name,
+            username: user.username
+        },
+        process.env.SECRET,{expiresIn:"10d"})
+        
+        return res.json({
+            status: '200',
+            message: "sucessfully login",
+            "x-access-token": token
+        })
+    }
+    else{
+        return res.json({
+            status: '400',
+            message: "wrong password"
+        })
+    }
 }
 
 

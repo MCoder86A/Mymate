@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { Outlet, Route, Routes } from "react-router"
 import JoinCard from "./joinCard"
 
 import { apiGroupRouter } from "../../../util/api/router"

@@ -67,7 +67,7 @@ const Group=()=>{
                         <Link to={'/group/mygroup'}>
                             <div className='item' id="myGroup">My group</div>
                         </Link>
-                        <Link to={'/group/notification/request'}>
+                        <Link to={'/group/notification'}>
                             <div className='item' id="myGroup">Notification</div>
                         </Link>
                     </div>
