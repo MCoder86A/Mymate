@@ -91,7 +91,7 @@ const Group=()=>{
                                 <Notification />
                             } />
 
-                        <Route path='g_id/:g_id' element={
+                        <Route path=':g_id' element={
                             <GroupInfoPage />
                         } />
                     </Routes>

@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import {Button,
+    Chip,
+    Paper,
+    Stack,
+    Typography
+} from '@mui/material'
 import { apiGroupRouter, apiProfileRouter } from '../../../util/api/router';
-import './groupCard.css'
+import { Box } from '@mui/system';
 
-const GroupCard=(groupProps)=>{
+const GroupCard=({groupProps})=>{
 
-    const admin = groupProps["groupProps"]["admin"]
-    const reqSent = groupProps['groupProps']['reqSent']
-    const name = groupProps["groupProps"]["name"]
-    const memberCount = groupProps["groupProps"]["memberCount"]
-    const _id = groupProps['groupProps']['_id']
-    const amIPresent = groupProps['groupProps']['amIPresent']
-    const description = groupProps['groupProps']['description']
+    const admin = groupProps["admin"]
+    const reqSent = groupProps['reqSent']
+    const name = groupProps["name"]
+    const memberCount = groupProps["memberCount"]
+    const _id = groupProps['_id']
+    const amIPresent = groupProps['amIPresent']
+    const description = groupProps['description']
 
     const [myProfile, setMyProfile] = useState({})
     const [groupReqSent, setGroupReqSent] = useState(false)
@@ -42,35 +47,41 @@ const GroupCard=(groupProps)=>{
     },[])
 
     return(
-        <>
-            <div className="groupCard">
-                <div className="info">
-                    Member count: {memberCount}
-                </div>
-                <div className="name">
-                    {name}
-                </div>
-                <div className="decription">
+        <Box sx={{p:1}}>
+            <Paper elevation={3} sx={{p:1, pt:3, pb:3}}>
+                <Typography >Member: {memberCount}</Typography>
+                <Typography >{name}</Typography>
+                <Typography sx={{wordBreak:'break-all'}}>
                     {description}
-                </div>
-                <div className='button'>
+                </Typography>
+                <Stack
+                    direction={'row'}
+                    spacing={1}
+                    sx={{mt:4}}
+                >
                     {
-                        groupReqSent===true && <div id="reqSent">Request sent</div>
+                        groupReqSent===true &&
+                            <Chip color='success' label='Request sent' />
                     }
                     {
                         (admin===myProfile["_id"]?
-                        (<div id="admin">admin</div>):
+                        (<Chip color='info' label='Admin' />):
                         (groupReqSent===false && amIPresent==="no" &&
-                            <div id="addRequest"
-                            onClick={addme}>Add</div>)
+                            <Button onClick={addme}
+                                    variant='contained'>
+                                Addme
+                            </Button>)
                         )
                     }
-                    <Link to={`/group/g_id/${_id}`}>
-                        <div id="visit">More</div>
-                    </Link>
-                </div>
-            </div>
-        </>
+                    <Button variant='contained'
+                            size='small'
+                            href={`/group/${_id}`}>
+                        More
+                    </Button>
+                </Stack>
+
+            </Paper>
+        </Box>
     )
 }
 
