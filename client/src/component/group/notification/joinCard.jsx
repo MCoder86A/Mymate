@@ -1,3 +1,5 @@
+import { Button, Chip, Paper, Stack, Typography } from "@mui/material"
+import { Box } from "@mui/system"
 import { useEffect, useState } from "react"
 import { apiGroupRouter, apiProfileRouter } from "../../../util/api/router"
 
@@ -44,27 +46,37 @@ const JoinCard = (joinCardProps)=>{
 
     return(
         <>
-            <div className="join_card">
-                <div className="info">
-                    <div>{user_info['name']} @{user_info['username']}</div>
-                    <div><b>{group_info['name']}</b></div>
-                    <div>{group_info['description']}</div>
-                </div>
-                <div className="action">
-                    {reqAccepted===false && <div onClick={api_accept} className="item">
-                        <div>Accept</div>
-                    </div>}
-                    {reqAccepted && <div className="item" id="accepted">
-                        <div>Accepted</div>
-                    </div>}
-                    <div className="item">
-                        <div>Delete</div>
-                    </div>
-                    {/* {<div className="item" id="deleted">
-                        <div>Deleted</div>
-                    </div>} */}
-                </div>
-            </div>
+            <Box sx={{pt:2}} >
+                <Paper elevation={3}
+                        sx={{p:2}} >
+                    <Typography>
+                        {user_info['name']} @{user_info['username']}
+                    </Typography>
+                    <Typography>
+                        <b>{group_info['name']}</b>
+                    </Typography>
+                    <Typography>
+                        {group_info['description']}
+                    </Typography>
+
+                    <Stack direction={'row'}
+                            spacing={2} sx={{mt:2}}>
+                        {reqAccepted===false &&
+                                <Button onClick={api_accept} variant="contained"
+                                        size='small' >
+                                    Accept
+                                </Button>
+                        }
+                        {reqAccepted && 
+                            <Chip label='Accepted' color="success" />
+                        }
+                        <Button variant="contained" color="error">
+                            Remove
+                        </Button>
+                        {/* <Chip label='Removed' color="default" /> */}
+                    </Stack>
+                </Paper>
+            </Box>
         </>
     )
 
