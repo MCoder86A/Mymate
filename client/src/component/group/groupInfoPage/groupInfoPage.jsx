@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import {
+    Box,
+    Divider,
+    Paper,
+    Typography
+} from '@mui/material'
 import { apiGroupRouter, apiProfileRouter } from "../../../util/api/router"
-
-import './groupinfopage.css'
 
 const GroupInfoPage = ()=>{
     const urlParam = useParams() //{ g_id: '...' }
@@ -28,32 +32,46 @@ const GroupInfoPage = ()=>{
 
     useEffect(()=>{
         api_group_details()
-        // eslint-disable-next-line
     },[])
+
     useEffect(()=>{
         if(groupData.member){
             api_userinfo_fetch(groupData.member)
         }
-        // eslint-disable-next-line
     },[groupData])
 
 
     return(
         <>
-            <div className="groupinfopage">
-                <div className="name">{groupData['name']}</div>
-                <div className="description">{groupData['description']}</div>
-                <div className="members">
-                    <div className="header">Members</div>
-                    <div className="items">
-                        {
-                            userData.map((user)=>
-                                <div key={user['_id']}>{user['name']} @{user['username']}</div>
-                            )
-                        }
-                    </div>
-                </div>
-            </div>
+            <Box sx={{mt:1}}>
+                <Paper
+                        elevation={2}
+                        sx={{
+                            p:2, pt:0.5
+                        }} >
+                    <Typography variant="caption">
+                        {groupData['name']}
+                    </Typography>
+                    <Divider />
+                    <Typography variant="body2" mt={1}>
+                        {groupData['description']}
+                    </Typography>
+                    <Divider sx={{mt:4}}/>
+                    
+                    <Typography variant="caption" mt={1}>
+                        <b>Members</b>
+                    </Typography>
+                    {
+                        userData.map((user)=>
+                            <Typography key={user['_id']}
+                                    variant='body2' >
+                                {user['name']}@{user['username']}
+                            </Typography>
+                        )
+                    }
+                </Paper>
+
+            </Box>
         
         </>
     )
